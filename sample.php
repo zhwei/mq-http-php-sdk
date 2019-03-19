@@ -2,8 +2,8 @@
 
 require "vendor/autoload.php";
 
-use MQ\Model\TopicMessage;
-use MQ\MQClient;
+use AliyunMQ\Model\TopicMessage;
+use AliyunMQ\MQClient;
 
 function getMillisecond() {
     list($t1, $t2) = explode(' ', microtime());
@@ -38,7 +38,7 @@ class Sample
             try {
                 $messages = $consumer->consumeMessage(4, 3);
             } catch (\Exception $e) {
-                if ($e instanceof MQ\Exception\MessageNotExistException) {
+                if ($e instanceof AliyunMQ\Exception\MessageNotExistException) {
                     // no new message;
                     // long polling again.
                     print "no new message\n";
